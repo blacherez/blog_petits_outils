@@ -1,5 +1,5 @@
-title: Long Haul
-description: Long Form Jekyll theme built with SASS / COMPASS / SUSY
+title: Mes petits outils
+description: Scripts et causeries
 
 url: http://brianmaierjr.github.com/long-haul
 baseurl: ""
@@ -20,9 +20,9 @@ navigation:
    url: /contact
 
 social:
-   github: brianmaierjr
-   twitter: brianmaierjr
-   facebook: brianmaierjr
-   email: brimaidesigns@gmail.com
+   github: blacherez
+   twitter: blacherez
+   facebook: blacherez
+   email: blacherez@gmail.com
 
-google_analytics: "UA-58263416-1"
+google_analytics: ""
