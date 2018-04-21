@@ -1,0 +1,90 @@
+---
+layout: post
+title: Nettoyer les textes adoptés de l’Assemblée nationale
+tag: 
+---
+
+<p>Vous vous souvenez sans doute que j&rsquo;ai voulu <a href="http://liltools.lacherez.info/une-pipe-pour-telecharger-tous-les-textes-adoptes-par-lassemblee-nationale/">récupérer tous les textes adoptés par l&rsquo;Assemblée nationale</a>. Comme je n&rsquo;ai pas trouvé de moyen de récupérer seulement les textes adoptés sous la forme de fichiers textes, j&rsquo;ai téléchargé la version texte des pages web qui présentaient les textes.</p>
+<p>Voici à quoi ressemble le début d&rsquo;un fichier au hasard :</p>
+<div class="code-embed-wrapper"> <pre class="language-markdown code-embed-pre"  data-start="1" data-line-offset="0"><code class="language-markdown code-embed-code">   Logo de l&#039;Assemblee nationale
+   Assemblee nationale
+     * Accueil
+     * Les
+       deputes 
+          * Le President
+          * 577 deputes
+          * Le Bureau
+          * La Conference des Presidents
+          * Les Groupes politiques
+          * Statut des deputes
+          * Deontologie
+          * Elections legislatives
+          * Anciens deputes
+          * Contacter son depute
+          * Ouvrir le menu dans l&#039;hemicycle
+     * Dans
+       l&#039;Hemicycle 
+          * Ordre du jour
+          * Calendrier de la session
+          * Comptes rendus des seances
+          * Scrutins
+               * Les scrutins solennels
+               * Tous les scrutins publics
+          * Le Congres
+          * Engagements de responsabilite et motions de censure
+          * Budget et securite sociale
+          * Assister `a une seance
+          * Archives
+               * XIIIe legislature
+               * XIIe legislature
+               * XIe legislature
+               * Autres legislatures
+          * Ouvrir le menu commissions et autres instances
+     * Commissions et
+       autres instances 
+          * Agendas
+          * Les Commissions permanentes
+               * Affaires culturelles
+               * Affaires economiques
+               * Affaires etrangeres
+               * Affaires sociales
+               * Defense
+               * Developpement durable
+               * Finances
+               * Lois
+          * Autres commissions
+               * Affaires europeennes
+               * Commissions d&#039;enquete
+               * Commissions speciales</code></pre> <div class="code-embed-infos"> <span class="code-embed-name">Début d&#039;un fichier de texte adopté par l&#039;Assemblée nationale</span> </div> </div>
+<p>On le voit, il comporte toute sorte d&rsquo;informations et de liens qui sont reproduits dans tous les fichiers, mais qui ne présentent aucun intérêt pour ce que je veux en faire, puisqu&rsquo;ils ne font pas partie du texte adopté en lui-même. Je vais donc les supprimer.</p>
+<p>La méthode que j&rsquo;utilise a l&rsquo;avantage d&rsquo;être très rapide, même si elle n&rsquo;est pas très précise : je vais supprimer toutes les lignes qui sont répétées très souvent (comme j&rsquo;ai environ 830 fichiers, j&rsquo;ai estimé qu&rsquo;une ligne répétée plus de 800 fois sur l&rsquo;ensemble du corpus était inutile). On voit bien les problèmes que cette méthode peut poser : certains passages qui font véritablement partie du texte adopté peuvent être répétés très souvent (on pense par exemple à une ligne comme &laquo;&nbsp;Article 1er&nbsp;&raquo;). Dans la mesure où je m&rsquo;intéresse au &laquo;&nbsp;vrai&nbsp;&raquo; contenu et pas à tout ce péritexte, j&rsquo;accepte le risque (en fait, la ligne &laquo;&nbsp;Article 1er&nbsp;&raquo; n&rsquo;apparaît qu&rsquo;un peu plus de 700 fois, elle est donc conservée).</p>
+<p>Voici donc mon script, qui suit une logique simple : je commence par parcourir tous les textes, en comptant combien de fois chaque ligne apparaît. Je reprends alors les textes, en supprimant toutes les lignes qui apparaissent plus de 800 fois (naturellement, je pourrais fixer un autre nombre selon le nombre de fichiers à traiter, ou même le calculer à la volée). Quand on fait ce genre de manipulations, il est prudent de ne pas altérer les fichiers initiaux tant qu&rsquo;on n&rsquo;est pas sûr du résultat obtenu, j&rsquo;enregistre donc les textes modifiés dans un nouveau répertoire que j&rsquo;appelle <code>textes_propres</code>.</p>
+<div class="code-embed-wrapper"> <pre class="language-python code-embed-pre"  data-start="1" data-line-offset="0"><code class="language-python code-embed-code">#! /usr/bin/env python3
+import os, sys
+
+# On récupère toutes les lignes
+lignes = {}
+for fichier in os.listdir(&quot;textes&quot;):
+    print(fichier)
+    with open(os.path.join(&quot;textes&quot;, fichier)) as f:
+        for l in f.readlines():
+            if l in lignes:
+                lignes[l] += 1
+            else:
+                lignes[l] = 1
+# On supprime les lignes inutiles
+# Les nouveaux fichiers sont écrits dans le répertoire textes_propres
+# Si ce répertoire n&#039;existe pas, on le crée
+if not os.path.exists(&quot;textes_propres&quot;):
+    os.mkdir(&quot;textes_propres&quot;)
+for fichier in os.listdir(&quot;textes&quot;):
+    print(&quot;Suppression dans %s&quot; % fichier)
+    with open(os.path.join(&quot;textes&quot;, fichier)) as f:
+        gardees = [] # On crée une liste des lignes conservées
+        for l in f.readlines():
+            if not lignes[l] &gt; 800:
+                gardees.append(l)
+        with open(os.path.join(&quot;textes_propres&quot;, fichier), &quot;w&quot;) as fw:
+            fw.writelines(gardees) # On écrit les lignes conservées dans un nouveau fichier</code></pre> <div class="code-embed-infos"> <span class="code-embed-name">Script nettoyeur.py</span> </div> </div>
+<p>&nbsp;</p>
+<p><a href="https://github.com/blacherez/mes_petits_outils/tree/master/ass_nat">Voir le script sur Github</a></p>

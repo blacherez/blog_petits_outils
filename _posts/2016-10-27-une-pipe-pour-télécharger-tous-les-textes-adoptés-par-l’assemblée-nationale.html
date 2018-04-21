@@ -1,0 +1,53 @@
+---
+layout: post
+title: Une pipe pour télécharger tous les textes adoptés par l’Assemblée nationale
+tag: 
+---
+
+<p>Hier, je me suis mis en tête d&rsquo;essayer d&rsquo;analyser le contenu de tous les textes adoptés par l&rsquo;Assemblée nationale sous la législature actuelle (la quatorzième de la Vème République) pour voir comment les questions relatives au numérique y sont traitées. C&rsquo;est un vaste sujet et si cette analyse se révèle fructueuse, je ne manquerai pas d&rsquo;écrire un petit billet à ce sujet.</p>
+<p>Là n&rsquo;est pas mon propos aujourd&rsquo;hui. Pour me livrer à cet exercice, il m&rsquo;a fallu télécharger tous les textes adoptés. J&rsquo;ai utilisé pour cela une astuce que j&rsquo;utilise tous les jours et même plusieurs fois par jour : générer des commandes shell avec un script quelconque puis les faire exécuter en utilisant le pipe (<code>|</code>).</p>
+<h1 id="télécharger-les-textes-adoptés">Télécharger les textes adoptés</h1>
+<p>Les textes adoptés sont tous listés sur <a href="http://www2.assemblee-nationale.fr/documents/liste/%28type%29/ta">une page dédiée du site de l&rsquo;Assemblée nationale</a>, dans l&rsquo;ordre antéchronologique, 150 par page. Je suis naturellement trop paresseux pour tous les télécharger un par un. J&rsquo;ai voulu faire un script.</p>
+<p>Pour commencer, je voulais récupérer chacun de ces textes sous la forme d&rsquo;un fichier texte. Un outil bien adapté pour ce travail est le navigateur web en mode texte <code>lynx</code>, dans les Linux modernes, il est remplacé par une version plus récente appelée <code>links</code> (voir <code>links2</code>). Ce navigateur permet de surfer sur le web en mode texte, ce qui peut être utile dans certains cas ; surtout, il propose une option <code>-dump</code> qui envoie le contenu de la page sur la sortie standard, c&rsquo;est-à-dire généralement l&rsquo;écran.</p>
+<p>Ainsi, si vous tapez dans un terminal :</p>
+<pre>$ links2 http://liltools.lacherez.info</pre>
+<p>vous verrez ce blog dans une version texte. Pour naviguer, sachez que <code>&lt;flèche vers le bas&gt;</code> vous permet de passer de lien en lien, <code>&lt;flèche vers la droite&gt;</code> de suivre un lien et <code>q</code> de sortir.</p>
+<p><a href="http://i2.wp.com/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_038.png" rel="attachment wp-att-80"><img class="size-medium wp-image-80 aligncenter" src="http://i2.wp.com/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_038.png?resize=300%2C258" alt="Mes petits outils dans links2" srcset="http://i2.wp.com/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_038.png?resize=300%2C258 300w, http://i2.wp.com/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_038.png?w=659 659w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></p>
+<p>Si, en revanche vous saisissez :</p>
+<pre>$ links2 -dump http://liltools.lacherez.info</pre>
+<p>tout le contenu de la page s&rsquo;affichera sous forme de texte (j&rsquo;insiste sur ce point : c&rsquo;est du texte que vous voyez et non du HTML).</p>
+<p>Il suffit alors de rediriger la sortie standard vers un fichier pour que le contenu de la page soit stocké dans ce fichier sous forme de texte :</p>
+<pre>links2 -dump http://liltools.lacherez.info &gt; liltools.txt</pre>
+<p>Pour en revenir à l&rsquo;Assemblée nationale, la commande</p>
+<pre>$ links2 -dump http://www2.assemblee-nationale.fr/documents/notice/14/ta/ta0811/(index)/ta &gt; 0811.txt</pre>
+<p>écrira le texte adopté numéro 811 dans un fichier <code>0811.txt</code>.</p>
+<p>Tout cela est bel et bon, mais, me direz-vous, je n&rsquo;ai aucune envie de répéter cette opération plus de 800 fois&#8230; C&rsquo;est précisément pour cette raison que vous êtes sur ce blog <img src="http://i0.wp.com/liltools.lacherez.info/wp-includes/images/smilies/simple-smile.png" alt=":)" class="wp-smiley" style="height: 1em; max-height: 1em;" data-recalc-dims="1" /> .</p>
+<p>Je vais donc écrire un minuscule morceau de python pour écrire ces 800 et quelques commandes :</p>
+<div class="code-embed-wrapper"> <pre class="language-python code-embed-pre"  data-start="1" data-line-offset="0"><code class="language-python code-embed-code">for a in range(1,829):
+    numero = &quot;{:0&gt;4}&quot;.format(a)
+    url = &quot;http://www2.assemblee-nationale.fr/documents/notice/14/ta/ta%s/(index)/ta&quot; % numero
+    print(&quot;links2 -dump &#039;%s&#039; &gt; %s.txt\necho %s&quot; % (url, numero, numero))
+    </code></pre> <div class="code-embed-infos"> <span class="code-embed-name">recupere.py</span> </div> </div>
+<p>Il y a 828 textes au moment où je fais cette opération. Ils sont numérotés de 1 à 828 et dans l&rsquo;adresse leur numéro est noté sur quatre chiffres.</p>
+<p>Je fais donc une boucle de 828 itérations (en python <code>range(1, 829)</code> renvoie une liste des nombres de 1 à 828, c&rsquo;est un peu étrange, mais il suffit de le savoir).</p>
+<p>Je formate chaque nombre de façon à avoir une chaîne de 4 caractères, en complétant avec des 0 le cas échéant :</p>
+<pre>numero = "{:0&gt;4}".format(a)</pre>
+<p>Je place ce <code>numero</code> au bon endroit de l&rsquo;adresse (identifié par <code>%s</code>) :</p>
+<pre>url = "http://www2.assemblee-nationale.fr/documents/notice/14/ta/ta%s/(index)/ta" % numero</pre>
+<p>Il ne me reste plus qu&rsquo;à écrire ma commande avec <code>links2</code> :</p>
+<pre>print("links2 -dump '%s' &gt; %s.txt\necho %s" % (url, numero, numero))</pre>
+<p>Naturellement, je redirige la sortie de la commande vers un fichier portant le même numéro et une extension <code>.txt</code> et pour ne pas m&rsquo;impatienter, j&rsquo;ajoute <code>echo</code> et le numéro, de façon à toujours savoir où j&rsquo;en suis de mon téléchargement.</p>
+<p>Quand je lance mon script, (<code>python3 recupere.py</code>) j&rsquo;obtiens donc, pour chaque numéro, deux lignes de la forme :</p>
+<pre>links2 -dump 'http://www2.assemblee-nationale.fr/documents/notice/14/ta/ta0820/(index)/ta' &gt; 0820.txt
+echo 0820</pre>
+<p><a href="http://liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_040.png" rel="attachment wp-att-82"><br />
+<img class="aligncenter size-medium wp-image-82" src="http://i1.wp.com/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_040.png?resize=300%2C258" alt="Les 828 commandes générées" srcset="http://i1.wp.com/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_040.png?resize=300%2C258 300w, http://i1.wp.com/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_040.png?w=659 659w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a><br />
+C&rsquo;est là qu&rsquo;arrive le pipe : je passe ces lignes à un shell :</p>
+<pre>python3 recupere.py | sh</pre>
+<p>Et là, devant vos yeux ébahis, tous les fichiers se téléchargent automatiquement !</p>
+<h1 id="quel-est-l'intérêt-du-pipe-?">Quel est l&rsquo;intérêt du pipe ?</h1>
+<p>Evidemment, j&rsquo;aurais pu utiliser d&rsquo;autres fonctions en python pour télécharger les fichiers, sans passer par le shell.</p>
+<p>L&rsquo;avantage de ce système est que d&rsquo;abord, il est facile à déboguer : je commence par afficher toutes mes commandes avant de les exécuter, il est facile de bien vérifier qu&rsquo;elles correspondent bien à ce que j&rsquo;attends.</p>
+<p>La logique est très simple à suivre (j&rsquo;ai toutes les commandes les unes après les autres) et je peux facilement reprendre n&rsquo;importe où si la démarche a été arrêtée en cours pour une raison quelconque.</p>
+<p>En outre, je peux utiliser simplement des outils unix classiques, sans être obligé de les récrire à partir de rien (je n&rsquo;ai pas envie de recréer <code>grep</code> ou <code>links</code>, puisqu&rsquo;ils existent déjà et qu&rsquo;ils sont bien meilleurs que ce que je ferai jamais).</p>
+<p><a href="https://github.com/blacherez/mes_petits_outils/tree/master/ass_nat">Voir le script sur Github</a></p>

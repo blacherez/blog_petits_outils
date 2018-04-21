@@ -1,0 +1,76 @@
+---
+layout: post
+title: Sauvegarder un site web
+tag: 
+---
+
+<p>On a souvent besoin de faire une sauvegarde d&rsquo;un site web, c&rsquo;est-à-dire, la plupart du temps, d&rsquo;un ensemble de fichiers stockés sur un serveur, chez un hébergeur, comme OVH ou 1and1, et d&rsquo;une base de données. C&rsquo;est ainsi si votre site ou votre blog est un wordpress, ou un joomla, un drupal, ou si votre boutique en ligne est faite avec prestashop, par exemple.</p>
+<p>Il est bien sûr possible de se connecter en FTP (en fait, désormais, il s&rsquo;agit généralement de SFTP, qui est une variante du protocole SSH qui se présente à l&rsquo;utilisateur comme du FTP), récupérer les fichiers, puis se connecter sur phpMyAdmin pour faire un export de la base de données (on parle de dump).</p>
+<p>Le script que je vous propose permet d&rsquo;automatiser ces deux opérations, il est écrit en bash et fonctionne donc nativement sur n&rsquo;importe quel système Linux (en tout cas les plus répandus) ou MacOS. En installant quelques petites choses, on peut facilement le faire fonctionner sous Windows également.</p>
+<h1>Comment ça marche ?</h1>
+<p>Il est divisé en deux parties : une pour la configuration dans laquelle on ne fait qu&rsquo;affecter des variables, et l&rsquo;autre pour la sauvegarde en elle-même.</p>
+<p>Sur la configuration, il n&rsquo;y a rien à dire de particulier, j&rsquo;ai mis en commentaire de quoi comprendre à quoi correspond chaque variable. La partie &laquo;&nbsp;Sauvegarde&nbsp;&raquo; est plus intéressante, je la commenterai après.</p>
+<div class="code-embed-wrapper"> <pre class="language-bash code-embed-pre"  data-start="1" data-line-offset="0"><code class="language-bash code-embed-code"># Config, à personnaliser
+# Le nom que vous voulez donner au site
+# La sauvegarde sera enregistrée dans 
+# un répertoire portant ce nom.
+SITE=mon_site
+# L&#039;adresse de votre serveur, telle qu&#039;elle vous
+# a été donnée par votre hébergeur 
+# (c&#039;est l&#039;adresse FTP)
+SERVEUR_SITE=ssh.cluster003.ovh.net
+# Le nom d&#039;utilisateur pour le FTP
+COMPTE_SITE=adnxpzpr
+# Le chemin de votre site sur le serveur.
+# En général, ce chemin est web ou www
+# (si votre site est à la racine de votre
+# espace web)
+CHEMIN_SITE=www
+# Le nom de la base de données
+DB_SITE=dbmonsite
+# Le nom d&#039;utilisateur de la base de données
+DB_USER_SITE=user_dbmonsite
+# Le mot de passe de la base de données
+DB_MDP_SITE=mOtDePaSsEdB
+# Le nom d&#039;hôte du serveur de base de données
+# ou son adresse IP
+# Ces éléments vous ont été communiqués 
+# par l&#039;hébergeur
+DB_HOST_SITE=10.0.237.146
+# Le répertoire de votre ordinateur 
+# dans lequel vous souhaitez stocker
+# les sauvegardes.
+REP_BACKUP=backup_site
+
+# Ne rien modifier sous cette ligne
+
+# Sauvegarde    
+mkdir -p $REP_BACKUP/$SITE
+echo $SITE
+# Sauvegarde de la BDD
+echo Backup BDD
+ssh $COMPTE_SITE@$SERVEUR_SITE &quot;mysqldump -u $DB_USER_SITE -p$DB_MDP_SITE -h $DB_HOST_SITE $DB_SITE&quot; &gt; $REP_BACKUP/$SITE/$SITE.sql
+# Sauvegarde des fichiers
+echo Backup fichiers
+scp -r $COMPTE_SITE@$SERVEUR_SITE:$CHEMIN_SITE $REP_BACKUP/$SITE</code></pre> <div class="code-embed-infos"> <span class="code-embed-name">Script sauvegarde.sh</span> </div> </div>
+<p>Ainsi, comme vous pouvez le voir, nous commençons par créer le répertoire pour stocker les sauvegardes avec la commande <code>mkdir</code>. L&rsquo;option <code>-p</code> permet de créer les niveaux de répertoires intermédiaire : si par exemple je demande la création d&rsquo;un répertoire <code>/home/benoit/petits_outils/sauvegardes/mes_sauvegardes_de_sites</code> mais que <code>sauvegardes</code> n&rsquo;existe pas dans <code>petits_outils</code>, <code>mkdir</code> seul va me renvoyer une erreur :</p>
+<p><a href="http://i2.wp.com/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_027.png" rel="attachment wp-att-53"><img class="alignnone size-medium wp-image-53" src="http://i2.wp.com/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_027.png?resize=300%2C211" alt="benoitbenoit-hp-elitebook-8540p-_027" srcset="http://i2.wp.com/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_027.png?resize=300%2C211 300w, http://i2.wp.com/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_027.png?w=659 659w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></p>
+<p>Cela signifie (même si ce n&rsquo;est pas très explicite) que le répertoire <code>sauvegardes</code> dans lequel j&rsquo;ai demandé la création du nouveau dossier <code>mes_sauvegardes_de_sites</code> n&rsquo;existe pas.</p>
+<p>En revanche, si j&rsquo;ajoute l&rsquo;option <code>-p</code>, tous les répertoires intermédiaires utiles sont créés :</p>
+<p><a href="http://i0.wp.com/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_030.png" rel="attachment wp-att-54"><img class="alignnone size-medium wp-image-54" src="http://i0.wp.com/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_030.png?resize=300%2C211" alt="benoitbenoit-hp-elitebook-8540p-_030" srcset="http://i0.wp.com/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_030.png?resize=300%2C211 300w, http://i0.wp.com/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_030.png?w=659 659w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></p>
+<p>En outre, même si le répertoire que j&rsquo;essaie de créer avec <code>mkdir -p</code> existe déjà, il n&rsquo;y a pas d&rsquo;erreur (contrairement à ce qui se passe sans l&rsquo;option <code>-p</code>).</p>
+<p>Les différents <code>echo</code> servent bien sûr à informer l&rsquo;utilisateur de l&rsquo;état des opérations et à lui montrer qu&rsquo;il se passe bien des choses, même si la récupération des données est un peu longue.</p>
+<p>La commande <code>ssh</code> se connecte au serveur et lui envoie la commande passée en paramètre (si aucune commande n&rsquo;est donnée ainsi, c&rsquo;est un shell sur la machine distante qui s&rsquo;ouvre).</p>
+<p>En l&rsquo;occurrence, c&rsquo;est la commande <code>"mysqldump -u $DB_USER_SITE -p$DB_MDP_SITE -h $DB_HOST_SITE $DB_SITE"</code> qui est envoyée, c&rsquo;est-à-dire la commande pour afficher un dump de la base de données. Au lieu d&rsquo;afficher ces données à l&rsquo;écran (ce qui ne serait pas très intéressant), nous redirigeons cet affichage vers un fichier en ajoutant <code>&gt; $REP_BACKUP/$SITE/$SITE.sql</code>. Attention de bien mettre cette redirection hors de guillemets, sinon, c&rsquo;est sur le serveur que les données seront stockées.</p>
+<p>Nous copions ensuite simplement les fichiers en utilisant la commande <code>scp</code> (pour &lsquo;secure copy&rsquo;).</p>
+<h1>Pour l&rsquo;utiliser chez vous</h1>
+<p><a href="http://liltools.lacherez.info/wp-content/uploads/2016/10/sauvegarde.sh_.txt" rel="">Téléchargez le script</a> sur votre ordinateur, dans le répertoire de votre choix, en le renommant sauvegarde.sh (ce n&rsquo;est pas indispensable, mais c&rsquo;est plus clair). Modifiez ensuite la partie &laquo;&nbsp;config&nbsp;&raquo; pour l&rsquo;adapter à votre situation.</p>
+<p>Attention ! Chez OVH (et peut-être chez d&rsquo;autres hébergeurs également), l&rsquo;accès en SSH n&rsquo;est pas possible avec l&rsquo;abonnement le moins cher, il n&rsquo;est donc pas possible d&rsquo;utiliser ce script avec un tel abonnement.</p>
+<p>Quand vous voudrez l&rsquo;utiliser :</p>
+<ol>
+<li>Ouvrez un terminal, puis placez-vous dans le répertoire où vous avez mis le script.</li>
+<li>Lancez-le en saisissant :</li>
+</ol>
+<pre>sh sauvegarde.sh</pre>
+<p>Et voilà ! Le mot de passe vous sera demandé deux fois, nous verrons dans un prochain billet comment ne pas avoir à le saisir. Nous verrons aussi comment sauvegarder plusieurs sites en une seule fois.</p>
+<p><a href="https://github.com/blacherez/mes_petits_outils/tree/master/sauvegarder_un_site">Voir le script sur Github</a></p>
