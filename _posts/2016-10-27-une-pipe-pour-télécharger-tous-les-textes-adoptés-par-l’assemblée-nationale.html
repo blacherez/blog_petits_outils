@@ -12,7 +12,7 @@ tag:
 <p>Ainsi, si vous tapez dans un terminal :</p>
 <pre>$ links2 http://liltools.lacherez.info</pre>
 <p>vous verrez ce blog dans une version texte. Pour naviguer, sachez que <code>&lt;flèche vers le bas&gt;</code> vous permet de passer de lien en lien, <code>&lt;flèche vers la droite&gt;</code> de suivre un lien et <code>q</code> de sortir.</p>
-<p><a href="http://i2.wp.com/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_038.png" rel="attachment wp-att-80"><img class="size-medium wp-image-80 aligncenter" src="http://i2.wp.com/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_038.png?resize=300%2C258" alt="Mes petits outils dans links2" srcset="http://i2.wp.com/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_038.png?resize=300%2C258 300w, http://i2.wp.com/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_038.png?w=659 659w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></p>
+<p><a href="/assets/img/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_038.png" rel="attachment wp-att-80"><img class="size-medium wp-image-80 aligncenter" src="/assets/img/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_038.png?resize=300%2C258" alt="Mes petits outils dans links2" srcset="/assets/img/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_038.png?resize=300%2C258 300w, /assets/img/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_038.png?w=659 659w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a></p>
 <p>Si, en revanche vous saisissez :</p>
 <pre>$ links2 -dump http://liltools.lacherez.info</pre>
 <p>tout le contenu de la page s&rsquo;affichera sous forme de texte (j&rsquo;insiste sur ce point : c&rsquo;est du texte que vous voyez et non du HTML).</p>
@@ -21,7 +21,7 @@ tag:
 <p>Pour en revenir à l&rsquo;Assemblée nationale, la commande</p>
 <pre>$ links2 -dump http://www2.assemblee-nationale.fr/documents/notice/14/ta/ta0811/(index)/ta &gt; 0811.txt</pre>
 <p>écrira le texte adopté numéro 811 dans un fichier <code>0811.txt</code>.</p>
-<p>Tout cela est bel et bon, mais, me direz-vous, je n&rsquo;ai aucune envie de répéter cette opération plus de 800 fois&#8230; C&rsquo;est précisément pour cette raison que vous êtes sur ce blog <img src="http://i0.wp.com/liltools.lacherez.info/wp-includes/images/smilies/simple-smile.png" alt=":)" class="wp-smiley" style="height: 1em; max-height: 1em;" data-recalc-dims="1" /> .</p>
+<p>Tout cela est bel et bon, mais, me direz-vous, je n&rsquo;ai aucune envie de répéter cette opération plus de 800 fois&#8230; C&rsquo;est précisément pour cette raison que vous êtes sur ce blog <img src="/assets/img/liltools.lacherez.info/wp-includes/images/smilies/simple-smile.png" alt=":)" class="wp-smiley" style="height: 1em; max-height: 1em;" data-recalc-dims="1" /> .</p>
 <p>Je vais donc écrire un minuscule morceau de python pour écrire ces 800 et quelques commandes :</p>
 <div class="code-embed-wrapper"> <pre class="language-python code-embed-pre"  data-start="1" data-line-offset="0"><code class="language-python code-embed-code">for a in range(1,829):
     numero = &quot;{:0&gt;4}&quot;.format(a)
@@ -40,8 +40,8 @@ tag:
 <p>Quand je lance mon script, (<code>python3 recupere.py</code>) j&rsquo;obtiens donc, pour chaque numéro, deux lignes de la forme :</p>
 <pre>links2 -dump 'http://www2.assemblee-nationale.fr/documents/notice/14/ta/ta0820/(index)/ta' &gt; 0820.txt
 echo 0820</pre>
-<p><a href="http://liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_040.png" rel="attachment wp-att-82"><br />
-<img class="aligncenter size-medium wp-image-82" src="http://i1.wp.com/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_040.png?resize=300%2C258" alt="Les 828 commandes générées" srcset="http://i1.wp.com/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_040.png?resize=300%2C258 300w, http://i1.wp.com/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_040.png?w=659 659w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a><br />
+<p><a href="/assets/img/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_040.png" rel="attachment wp-att-82"><br />
+<img class="aligncenter size-medium wp-image-82" src="/assets/img/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_040.png?resize=300%2C258" alt="Les 828 commandes générées" srcset="/assets/img/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_040.png?resize=300%2C258 300w, /assets/img/liltools.lacherez.info/wp-content/uploads/2016/10/benoit@benoit-HP-EliteBook-8540p-_040.png?w=659 659w" sizes="(max-width: 300px) 100vw, 300px" data-recalc-dims="1" /></a><br />
 C&rsquo;est là qu&rsquo;arrive le pipe : je passe ces lignes à un shell :</p>
 <pre>python3 recupere.py | sh</pre>
 <p>Et là, devant vos yeux ébahis, tous les fichiers se téléchargent automatiquement !</p>
