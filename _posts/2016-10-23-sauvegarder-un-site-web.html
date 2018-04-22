@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Sauvegarder un site web
-tag: 
+tag:
+featured-img: backup
 ---
 
 <p>On a souvent besoin de faire une sauvegarde d&rsquo;un site web, c&rsquo;est-à-dire, la plupart du temps, d&rsquo;un ensemble de fichiers stockés sur un serveur, chez un hébergeur, comme OVH ou 1and1, et d&rsquo;une base de données. C&rsquo;est ainsi si votre site ou votre blog est un wordpress, ou un joomla, un drupal, ou si votre boutique en ligne est faite avec prestashop, par exemple.</p>
@@ -12,11 +13,11 @@ tag:
 <p>Sur la configuration, il n&rsquo;y a rien à dire de particulier, j&rsquo;ai mis en commentaire de quoi comprendre à quoi correspond chaque variable. La partie &laquo;&nbsp;Sauvegarde&nbsp;&raquo; est plus intéressante, je la commenterai après.</p>
 <div class="code-embed-wrapper"> <pre class="language-bash code-embed-pre"  data-start="1" data-line-offset="0"><code class="language-bash code-embed-code"># Config, à personnaliser
 # Le nom que vous voulez donner au site
-# La sauvegarde sera enregistrée dans 
+# La sauvegarde sera enregistrée dans
 # un répertoire portant ce nom.
 SITE=mon_site
 # L&#039;adresse de votre serveur, telle qu&#039;elle vous
-# a été donnée par votre hébergeur 
+# a été donnée par votre hébergeur
 # (c&#039;est l&#039;adresse FTP)
 SERVEUR_SITE=ssh.cluster003.ovh.net
 # Le nom d&#039;utilisateur pour le FTP
@@ -34,17 +35,17 @@ DB_USER_SITE=user_dbmonsite
 DB_MDP_SITE=mOtDePaSsEdB
 # Le nom d&#039;hôte du serveur de base de données
 # ou son adresse IP
-# Ces éléments vous ont été communiqués 
+# Ces éléments vous ont été communiqués
 # par l&#039;hébergeur
 DB_HOST_SITE=10.0.237.146
-# Le répertoire de votre ordinateur 
+# Le répertoire de votre ordinateur
 # dans lequel vous souhaitez stocker
 # les sauvegardes.
 REP_BACKUP=backup_site
 
 # Ne rien modifier sous cette ligne
 
-# Sauvegarde    
+# Sauvegarde
 mkdir -p $REP_BACKUP/$SITE
 echo $SITE
 # Sauvegarde de la BDD
