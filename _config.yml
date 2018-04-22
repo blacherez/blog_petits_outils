@@ -1,28 +1,12 @@
 title: Mes petits outils
 description: Scripts et causeries
 
-url: http://brianmaierjr.github.com/long-haul
 baseurl: ""
-paginate_path: "blog/page:num/"
-permalink: blog/:title/
 
 markdown: kramdown
 highlighter: rouge
 gems: [jekyll-paginate]
 paginate: 5
 
-navigation:
- - title: Home
-   url: /index.html
- - title: About
-   url: /about
- - title: Contact
-   url: /contact
 
-social:
-   github: blacherez
-   twitter: blacherez
-   facebook: blacherez
-   email: blacherez@gmail.com
-
-google_analytics: ""
+theme: jekyll-sleek
