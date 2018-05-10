@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Ouvrir un lien dans une nouvelle fenêtre avec Markdown
+title: Ouvrir un lien dans une nouvelle fenêtre avec markdown
 tag:
 featured-img: fenetre
 ---
