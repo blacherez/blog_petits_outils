@@ -8,8 +8,7 @@ $error: #ff6161 !default;
 
 $bg-color: #fff !default;
 $light-bg-color: #f9f9f9;
-//$text-color: #343851;
-$text-color: #f00;
+$text-color: #343851;
 $heading-color: #313237;
 $link-color: $primary;
 $button-dark: #222325;
@@ -28,7 +27,8 @@ $lg: 62em; //992px
 $xl: 75em; //1200px
 
 // Code
-$code-bg-color: #f6f8fa !default;
+//$code-bg-color: #f6f8fa !default;
+$code-bg-color: #ff0000 !default;
 $code-text-color: #25292e !default;
 
 // Borders
