@@ -1,0 +1,2 @@
+ls *.jpg|sed 's/\(.*\)\.\(.*\)/convert \1.jpg -resize 535 \1_thumb.jpg/'|sh
+ls *jpg|grep -v pl.jpg|grep -v '_placehold\|_thumb'|sed 's/\(.*\)\.jpg/cp pl.jpg \1_placehold.jpg/'|sh
