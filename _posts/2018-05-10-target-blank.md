@@ -14,6 +14,6 @@ En tout cas, ce comportement n'est pas prévu dans le Markdown standard, mais ce
 donne :
 [Ma page personnelle](https://lacherez.info){:target="_blank" }
 
-Toutefois, comme cette syntaxe n'est pas standard, elle perturbe la coloration syntaxique (en tout sur [atom](https://atom.io)).
+Toutefois, comme cette syntaxe n'est pas standard, elle perturbe la coloration syntaxique (en tout cas sur [atom](https://atom.io)).
 
 Crédit photo : [Ségur le Château, Maison Henri IV, fenêtre](https://commons.wikimedia.org/wiki/File:S%C3%A9gur_le_Ch%C3%A2teau_maison_Henri_IV_fen%C3%AAtre.JPG) Père Igor [GFDL (<http://www.gnu.org/copyleft/fdl.html>) ou CC BY-SA 3.0 (<https://creativecommons.org/licenses/by-sa/3.0>)], de Wikimedia Commons
