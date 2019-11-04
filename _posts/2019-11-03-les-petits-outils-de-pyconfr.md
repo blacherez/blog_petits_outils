@@ -4,7 +4,7 @@ title: Les petits outils de PyConFR
 tag: python, pyconfr, pycon, 
 featured-img: pyconfr
 ---
-J'ai participé à l'édition 2018 de [PyConFR](https://www.pycon.fr/2019/), la conférence Python francophone organisée par l'[AFPy](https://www.afpy.org/). J'avais déjà participé à d'autres éditions quand elles se passaient dans ma région (2015 à Pau, 2017 à Toulouse). Ces moments sont toujours passionnants, ils permettent de découvrir toutes sortes de nouveaux outils, d'astuces, et de rencontrer des gens passionnés et innovants.
+J'ai participé à l'édition 2019 de [PyConFR](https://www.pycon.fr/2019/), la conférence Python francophone organisée par l'[AFPy](https://www.afpy.org/). J'avais déjà participé à d'autres éditions quand elles se passaient dans ma région (2015 à Pau, 2017 à Toulouse). Ces moments sont toujours passionnants, ils permettent de découvrir toutes sortes de nouveaux outils, d'astuces, et de rencontrer des gens passionnés et innovants.
 
 Pendant ces deux jours, j'ai entendu parler de quelques outils ou projets que j'ai décidé de tester ou de regarder de plus près dans les jours qui viennent. Certains ont fait l'objet d'une présentation pendant la conférence, d'autres ont seulement été évoqués dans des conversations en marge du programme de la manifestation.
 
