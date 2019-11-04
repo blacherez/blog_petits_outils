@@ -4,7 +4,7 @@ title: Les petits outils de PyConFR
 tag: python, pyconfr, pycon, 
 featured-img: pyconfr
 ---
-J'ai participé à l'édition 2018 de [PyConFR](https://www.pycon.fr/2019/), la conférence Python francophone organisée par l'[AFPy](https://www.afpy.org/). J'avais déjà participé à d'autres éditions quand elles se passaient dans ma région (2015 à Pau, 2017 à Toulouse). Ces moments sont toujours passionnants, ils permettent de découvrir toutes sortes de nouveaux outils, d'astuces, et de rencontrer des gens.
+J'ai participé à l'édition 2018 de [PyConFR](https://www.pycon.fr/2019/), la conférence Python francophone organisée par l'[AFPy](https://www.afpy.org/). J'avais déjà participé à d'autres éditions quand elles se passaient dans ma région (2015 à Pau, 2017 à Toulouse). Ces moments sont toujours passionnants, ils permettent de découvrir toutes sortes de nouveaux outils, d'astuces, et de rencontrer des gens passionnés et innovants.
 
 Pendant ces deux jours, j'ai entendu parler de quelques outils ou projets que j'ai décidé de tester ou de regarder de plus près dans les jours qui viennent. Certains ont fait l'objet d'une présentation pendant la conférence, d'autres ont seulement été évoqués dans des conversations en marge du programme de la manifestation.
 
@@ -30,6 +30,10 @@ Les voici :
 
 - [Dash](https://plot.ly/dash/) qui permet de produire des applications web interactives de visualisation de données dans écrire de JavaScript
 
+- [Voilà](https://github.com/voila-dashboards/voila) pour transformer un notebook Jupyter en application web autonome
+
 - Les graphes et notamment [Networkx](https://networkx.github.io/), peut-être [Neo4j](https://neo4j.com/)
 
 - Réessayer d'utiliser le module [twint](https://github.com/twintproject/twint) : j'utilise beaucoup Twint pour télécharger des informations sur Twitter, mais j'avais renoncé à l'employer comme module Python, j'ai pris l'habitude de recourir à l'outil en ligne de commande pour récupérer les données avant de les traiter avec Python. J'ai vu que certains l'utilisent dans des scripts et je vais donc réessayer. 
+
+Je ne manquerai pas de vous tenir informés de la suite !
