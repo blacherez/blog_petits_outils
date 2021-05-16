@@ -32,7 +32,7 @@ Plusieurs outils peuvent être utilisés pour estimer ce coût côté client.
 
 L'application en ligne website carbon donne quelques éléments sur l'empreinte carbone d'une page web, côté client. La lecture est simple et permet de donner des ordres de grandeur (classement par rapport aux autres sites testés, correspondances pour la masse de carbone produite etc.)
 
-![Test de ce blog avec Website carbon](/asset/img/posts/websitecarbon_outils.png)
+![Test de ce blog avec Website carbon](/assets/img/posts/websitecarbon_outils.png)
 
 #### GreenIT Analysis
 
@@ -40,7 +40,7 @@ Cet outil est une extension pour Chrome ou Firefox qui permet d'analyser une pag
 
 L'avantage de cet outil est qu'il peut être appliqué à n'importe quelle page affichée (donc même locale ou sur un réseau non public). En outre, il fournit des éléments sur la conformité de la page par rapport à des "bonnes pratiques".
 
-![Test de ce blog avec GreenIT Analysis](/asset/img/posts/greenit_outils.png)
+![Test de ce blog avec GreenIT Analysis](/assets/img/posts/greenit_outils.png)
 
 #### Autres outils
 
@@ -64,9 +64,9 @@ Grâce aux outils évoqués précédemment, l'aspect "client" de la consommation
 
 **Précaution concernant les outils évoqués** : il semble que les résultats donnés par Website carbon et GreenIT Analysis ne convergent pas toujours, sans doute parce que leurs modèles ne priorisent pas les défauts constatés de la même façon (voir captures d'écran ci-dessous où le même site, [lacherez.info](https://lacherez.info), est évalué comme très mauvais par Websitecarbon, avec 2,43 g de CO<sub>2</sub>, alors qu'il obtient un score de A avec GreenIT Analysis, avec 1,26 g de CO<sub>2</sub>). De même, GreenIT Analysis semble ne pas donner les mêmes résultats à chaque analyse, pour une même page.
 
-![Test de la page d'accueil lacherez.info avec GreenIT Analysis](/asset/img/posts/greenit_lacherez.png)
+![Test de la page d'accueil lacherez.info avec GreenIT Analysis](/assets/img/posts/greenit_lacherez.png)
 
-![Test de la page d'accueil lacherez.info avec GreenIT Analysis](/asset/img/posts/websitecarbon_lacherez.png)
+![Test de la page d'accueil lacherez.info avec GreenIT Analysis](/assets/img/posts/websitecarbon_lacherez.png)
 
 ### Importance du choix du CMS dans la consommation côté client
 
@@ -74,14 +74,14 @@ Comme dit précédemment, il est facile de tester cet aspect côté client. Tout
 
 Afin d'avoir une idée *a minima* de l'importance du CMS sur cet aspect, nous proposons de comparer des versions de démo des CMS proposées par [Softaculous](https://www.softaculous.com/). Il ne s'agit pas à proprement parler de versions de démo, mais simplement d'installations de base. Aussi imprécis que soit le résultat de ce test, il nous permettra d'avoir une idée sur l'écoconception "de base" des différents CMS (sans aucune personnalisation du contenu, des fonctionnalités utilisateur ou du thème) et de savoir si, d'emblée, l'un d'eux est évidemment moins performant.
 
-![Test du site de démo de Grav sur Softaculous avec GreenIT Analysis](/asset/img/posts/greenit_grav.png)
+![Test du site de démo de Grav sur Softaculous avec GreenIT Analysis](/assets/img/posts/greenit_grav.png)
 
-![Test du site de démo de Wordpress sur Softaculous avec GreenIT Analysis](/asset/img/posts/greenit_wp.png)
+![Test du site de démo de Wordpress sur Softaculous avec GreenIT Analysis](/assets/img/posts/greenit_wp.png)
 
 
-![Test du site de démo de Grav sur Softaculous avec Website carbo](/asset/img/posts/websitecarbon_grav.png)
+![Test du site de démo de Grav sur Softaculous avec Website carbo](/assets/img/posts/websitecarbon_grav.png)
 
-![Test du site de démo de Wordpress sur Softaculous avec Website carbo](/asset/img/posts/websitecarbon_wp.png)
+![Test du site de démo de Wordpress sur Softaculous avec Website carbo](/assets/img/posts/websitecarbon_wp.png)
 
 Comme on peut le voir sur les captures d'écran ci-dessus, il n'y a pas de différence sensible, *a priori*, entre les pages générées par Grav et Wordpress.
 
