@@ -53,7 +53,7 @@ Un autre plugin,
 Il existe plusieurs ressources sur l'écoconception de sites web, par exemple :
 
 - Livre : [Ecoconception web : les 115 bonnes pratiques](https://ecoconceptionweb.com/)
-- Le livre ci-dessus a été produit par un collectif qui fournit d'autres documents et même une certification : https://collectif.greenit.fr/ecoconception-web/
+- Le livre ci-dessus a été produit par un collectif qui fournit [d'autres documents et même une certification](https://collectif.greenit.fr/ecoconception-web/)
 - [Comment être écolo et avoir un site web](https://constantin-boulanger.fr/comment-etre-ecolo-et-avoir-un-site-web/)
 - [Comment mesurer l'empreinte carbone d'un site web ?](https://www.adimeo.com/blog/comment-mesurer-l-empreinte-carbone-d-un-site-web)
 
