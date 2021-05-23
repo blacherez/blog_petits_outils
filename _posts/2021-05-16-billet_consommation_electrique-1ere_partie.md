@@ -88,4 +88,4 @@ Comme on peut le voir sur les captures d'écran ci-dessus, il n'y a pas de diff�
 
 Par conséquent, et comme on pouvait s'y attendre, le résultat côté client du choix du CMS n'est pas déterminant. Le choix des gabarits de pages (templates, thèmes...), lui, joue naturellement un rôle mais indépendant du CMS lui-même.
 
-Ce qui reste en suspens, toutefois, c'est ce que ce choix change au niveau de la consommation du serveur. C'est à cette question que j'essaierai de répondre dans un prochain billet...
+Ce qui reste en suspens, toutefois, c'est ce que ce choix change au niveau de la consommation du serveur. J'essaierai de répondre à cette question dans un [prochain billet](https://outils.lacherez.info/2021/05/23/billet_consommation_electrique-2e_partie.html).

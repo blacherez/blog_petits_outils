@@ -6,7 +6,7 @@ featured-img: motherboard-152501
 ---
 # Quel CMS pour un site éco-responsable ? -- Deuxième partie : le côté serveur
 
-Après avoir évoqué le côté client, parlons du pendant "serveur" de la consommation énergétique d'un site web. Comme je le disais dans mon billet précédent, on trouve beaucoup moins d'informations sur ce sujet, ce qui le rend beaucoup plus intéressant ! :)
+Après [avoir évoqué le côté client dans un précédent billet](https://outils.lacherez.info/2021/05/16/billet_consommation_electrique-1ere_partie.html), parlons du pendant "serveur" de la consommation énergétique d'un site web. Comme je le disais dans mon billet précédent, on trouve beaucoup moins d'informations sur ce sujet, ce qui le rend beaucoup plus intéressant ! :)
 
 
 
