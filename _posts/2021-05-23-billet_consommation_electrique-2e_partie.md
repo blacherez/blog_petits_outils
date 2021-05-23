@@ -1,3 +1,9 @@
+---
+layout: post
+title: Quel CMS pour un site éco-responsable ? Partie 2
+tag: green IT, éco-conception, web, CMS, wordpress, grav, website carbon, bilan carbone, consommation électrique, écologie, réchauffement climatique, éco-responsable, PowerAPI
+featured-img: notebook-405755_1920
+---
 # Quel CMS pour un site éco-responsable ? -- Deuxième partie : le côté serveur
 
 Après avoir évoqué le côté client, parlons du pendant "serveur" de la consommation énergétique d'un site web. Comme je le disais dans mon billet précédent, on trouve beaucoup moins d'informations sur ce sujet, ce qui le rend beaucoup plus intéressant ! :)
